@@ -1,15 +1,20 @@
 {
   "files": {
-    "main.css": "/Overview/static/css/main.6f4c035d.css",
-    "main.js": "/Overview/static/js/main.daf7bec1.js",
+    "main.css": "/Overview/static/css/main.91cdb7d6.css",
+    "main.js": "/Overview/static/js/main.ecb2a4c5.js",
     "static/js/488.818cba7f.chunk.js": "/Overview/static/js/488.818cba7f.chunk.js",
+    "static/media/KeywordNetwork.png": "/Overview/static/media/KeywordNetwork.808cfa25abdfef477368.png",
+    "static/media/VisualisierungBenutzterSysteme.png": "/Overview/static/media/VisualisierungBenutzterSysteme.341f73c5ea3e78c7b4d7.png",
+    "static/media/MongoDBSchema.png": "/Overview/static/media/MongoDBSchema.d33d603ae2da889f2d78.png",
+    "static/media/Docker Architecture Overview.png": "/Overview/static/media/Docker Architecture Overview.845ae20e97d3137310d2.png",
+    "static/media/PublicationHeatMap.png": "/Overview/static/media/PublicationHeatMap.7d096c2004c80c5f5c13.png",
     "index.html": "/Overview/index.html",
-    "main.6f4c035d.css.map": "/Overview/static/css/main.6f4c035d.css.map",
-    "main.daf7bec1.js.map": "/Overview/static/js/main.daf7bec1.js.map",
+    "main.91cdb7d6.css.map": "/Overview/static/css/main.91cdb7d6.css.map",
+    "main.ecb2a4c5.js.map": "/Overview/static/js/main.ecb2a4c5.js.map",
     "488.818cba7f.chunk.js.map": "/Overview/static/js/488.818cba7f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f4c035d.css",
-    "static/js/main.daf7bec1.js"
+    "static/css/main.91cdb7d6.css",
+    "static/js/main.ecb2a4c5.js"
   ]
 }
