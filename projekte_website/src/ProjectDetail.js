@@ -16,7 +16,6 @@ const projects = [
     name: 'Datamining SRF',
     description: 'This is my first datamining project where I extracted data from www.srf.ch a swiss news site and then systematically analyzed the data.',
     htmlFile: "/network_graph.html",
-    //htmlFile: "index.html",
     sourceCodeLink: "https://github.com/fabian-stettler/DataMining",
     content: [
         { type: 'title', content: 'Docker Container Overview' },
@@ -62,15 +61,17 @@ const projects = [
         ],
     pdf: 'Datamining_Arbeit.pdf'
     },
-    {
-        id: 3,
-        name: 'Project 3',
-        description: 'This is a project that was done in context of the module VSK (distributed systems) at HSLU.' +
-            ' The project was about a distributed logging system which enables logging via tcp from multiple clients to a central server. ' +
-            'It also includes a logger viewer which allows for a visual representation of the logged data at the server.',
+    { id: 3,
+        name: 'distributed logging system',
+        sourceCodeLink: "https://github.com/fabian-stettler/distributed-logging-system-vsk",
+        description: 'This is a project that was done in context of the module VSK (distributed systems) at HSLU with three other students as' +
+            ' a team.',
+        htmlFile_Dokumentation_VSK: "/Dokumentation.html",
         content: [
-            { type: 'title', content: 'Project 3' },
-            { type: 'text', content: 'This is a project description' },
+            { type: 'title', content: 'Project distributed logging system' },
+            { type: 'text', content: 'Component Diagram' },
+            { type: 'image', src: Component_Diagram_vsk, caption: 'Component Diagram'},
+
         ]
     }
 ];
@@ -130,6 +131,12 @@ function ProjectDetail() {
                                 <a href={`${process.env.PUBLIC_URL}/network_graph.html`}
                                     download="network_graph.html">
                                     get the whole graph
+                                </a>
+                            )}
+                            {project.htmlFile_Dokumentation_VSK && (
+                                <a href={`${process.env.PUBLIC_URL}/Dokumentation.html`}
+                                   download="Dokumentation.html">
+                                    get file
                                 </a>
                             )}
                             {project.sourceCodeLink && (
