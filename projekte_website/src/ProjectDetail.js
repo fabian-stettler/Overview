@@ -70,7 +70,7 @@ const projects = [
         content: [
             { type: 'title', content: 'Project distributed logging system' },
             { type: 'text', content: 'Component Diagram' },
-            { type: 'image', src: Component_Diagram_vsk, caption: 'Component Diagram'},
+            //{ type: 'image', src: Component_Diagram_vsk, caption: 'Component Diagram'},
 
         ]
     }
