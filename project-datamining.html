@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Mining SRF - Fabian Stettler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="back-nav">
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+        </div>
+    </nav>
+
+    <section class="project-detail">
+        <div class="container">
+            <h1 class="detail-title">Data Mining SRF</h1>
+            <p class="project-tech">Python • Data Analysis • Web Scraping • Docker</p>
+
+            <div class="detail-content">
+                <p class="lead-text">
+                    This is my first data mining project where I extracted data from www.srf.ch, a Swiss news site, and then systematically analyzed the data. I was interested in publication time of articles, attention on certain subjects over time, releasing frequency and release timing of certain authors. Also I was interested in possible biases of the publisher concerning specific subjects. This project is still not done and more data is being gathered.
+                </p>
+
+                <div class="project-links" style="margin-top: 20px; margin-bottom: 30px;">
+                    <a href="network_graph.html" class="btn btn-primary">
+                        <i class="fas fa-project-diagram"></i> View Interactive Network Graph
+                    </a>
+                    <a href="https://github.com/fabian-stettler/DataMining" class="btn btn-secondary" target="_blank">
+                        <i class="fab fa-github"></i> Source Code
+                    </a>
+                </div>
+
+                <p>
+                    I gathered the relevant HTML files from the source with a script on my Raspberry Pi which reached out once per day to gather the relevant data from the target. This was inspired by David Kriesel's "Reversing Spiegel-Online".
+                </p>
+
+                <h2 class="section-title">Docker Container Overview</h2>
+                <p>
+                    Here is an overview of the data analysis process and all the docker containers involved. I used Docker because of portability reasons, I developed the software on my laptop but I run it on my Raspberry Pi.
+                </p>
+                <div class="image-container">
+                    <img src="images/Docker Architecture Overview.845ae20e97d3137310d2.png" alt="Data Analysis Overview">
+                    <p class="image-caption">Data Analysis Overview</p>
+                </div>
+
+                <h2 class="section-title">Heat Map Article Publication Time</h2>
+                <p>
+                    A first use case analyzes the publication times of all articles published on www.srf.ch. There are 24 × 7 time slots and all articles are matched to one time slot. The more yellow the time slot is, the more articles got published in this time slot. It allows for a specific analysis of publication time of this news site.
+                </p>
+                <div class="image-container">
+                    <img src="images/PublicationHeatMap.7d096c2004c80c5f5c13.png" alt="Heatmap of article Publication Times">
+                    <p class="image-caption">Heatmap of article Publication Times</p>
+                </div>
+
+                <h2 class="section-title">Sentiment Analysis with AI</h2>
+                <p>
+                    I also tried a sentiment analysis with specific keywords and compared them to others to maybe find a bias of the newspaper. For this I searched all paragraphs within all articles if they would contain a keyword. Once a paragraph does contain the keyword, I classify the paragraph with the help of an external AI model. The model then classifies the paragraph as negative, neutral or positive and provides a confidence score. In the analysis only paragraphs with a confidence score higher than 0.9 are included.
+                </p>
+                <div class="image-container">
+                    <img src="images/SentimentAnalysis.a5bd2880ce384bd56be2.png" alt="Sentiment Analysis">
+                    <p class="image-caption">Sentiment Analysis Results</p>
+                </div>
+
+                <h2 class="section-title">Aspect Analysis over Time</h2>
+                <p>
+                    This plot shows the amount and development over time of specific aspects or keywords.
+                </p>
+                <div class="image-container">
+                    <img src="images/aspectAnalysisByTime.b9a765f0bc43ab95d2ab.png" alt="Aspect Analysis">
+                    <p class="image-caption">This is a plot of the keywords (Demokraten, Republikaner)</p>
+                </div>
+
+                <h2 class="section-title">Specific Author Publication over Time</h2>
+                <p>
+                    This function is able to display all the articles of a specific author over time. With this function you're able to analyze the publishing behavior of specific authors.
+                </p>
+                <div class="image-container">
+                    <img src="images/AuthorNachTimeline.58a78f6952877161bab6.png" alt="Author Publication Timeline">
+                    <p class="image-caption">Author Publication Timeline</p>
+                </div>
+
+                <h2 class="section-title">Keyword Network Analysis</h2>
+                <p>
+                    An interactive network graph showing relationships between keywords and topics in the analyzed articles.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Fabian Stettler. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
