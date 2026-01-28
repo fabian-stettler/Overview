@@ -1,1 +1,111 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/Overview/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/Overview/logo192.png"/><link rel="manifest" href="/Overview/manifest.json"/><title>React App</title><script defer="defer" src="/Overview/static/js/main.ff8bfceb.js"></script><link href="/Overview/static/css/main.91cdb7d6.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fabian Stettler - Portfolio showcasing data mining, database systems, and distributed systems projects">
+    <meta property="og:title" content="Fabian Stettler - Software Engineer Portfolio">
+    <meta property="og:description" content="Portfolio showcasing data mining, database systems, and distributed systems projects">
+    <title>Fabian Stettler - Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Hey! My name is Fabian Stettler.</h1>
+            <p class="hero-subtitle">I'm a software engineer and CS student at HSLU (Hochschule Luzern). This site is a visual collection of some of my projects. Welcome!</p>
+            
+            <div class="social-links">
+                <a href="mailto:fabian.stettler@example.com" aria-label="Email" target="_blank">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                <a href="https://github.com/fabian-stettler" aria-label="GitHub" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://medium.com/@fabian-stettler" aria-label="Medium" target="_blank">
+                    <i class="fab fa-medium"></i>
+                </a>
+                <a href="https://linkedin.com/in/fabian-stettler" aria-label="LinkedIn" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <div class="container">
+            <!-- Project 1: Data Mining SRF -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="_backup/static/media/KeywordNetwork.dc329a85077ab214bb54.png" alt="Data Mining SRF Network Graph">
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">Data Mining SRF</h2>
+                    <p class="project-tech">Python • Data Analysis • Web Scraping • Docker</p>
+                    <p class="project-description">
+                        This is my first data mining project where I extracted data from www.srf.ch, a Swiss news site, and then systematically analyzed the data. I was interested in publication time of articles, attention on certain subjects over time, releasing frequency and release timing of certain authors. Also I was interested in possible biases of the publisher concerning specific subjects. I gathered the relevant HTML files with a script on my Raspberry Pi which reached out once per day. This was inspired by David Kriesel's "Reversing Spiegel-Online".
+                    </p>
+                    <div class="project-links">
+                        <a href="network_graph.html" class="btn btn-primary">View Network Graph</a>
+                        <a href="https://github.com/fabian-stettler/DataMining" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2: Database Decision Support System -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="_backup/static/media/MongoDBSchema.d33d603ae2da889f2d78.png" alt="MongoDB Schema Diagram">
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">Database Decision Support System</h2>
+                    <p class="project-tech">MongoDB • SQL • Python • Data Analysis</p>
+                    <p class="project-description">
+                        This is a project which provides decision support on the basis of data. The user is supported in their decision-making process with underlying MongoDB and SQL databases. This project was aimed at helping football clubs find optimal new signings, game analysis of opponents and tactics. It demonstrates the power of combining different database technologies for complex analytical queries.
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/fabian-stettler/database-decision-support" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3: Distributed Logging System -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="_backup/static/media/Docker Architecture Overview.845ae20e97d3137310d2.png" alt="Distributed Logging System Architecture">
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title">Distributed Logging System</h2>
+                    <p class="project-tech">Java • TCP/IP • Distributed Systems • Docker</p>
+                    <p class="project-description">
+                        This project was done in the context of the module VSK (distributed systems) at HSLU. The project is a distributed logging system which enables logging via TCP from multiple clients to a central server. It also includes a logger viewer which allows for a visual representation of the logged data at the server. The system demonstrates key concepts of distributed computing including network protocols, concurrent processing, and data aggregation.
+                    </p>
+                    <div class="project-links">
+                        <a href="Dokumentation.html" class="btn btn-primary">Documentation</a>
+                        <a href="https://github.com/fabian-stettler/distributed-logging" class="btn btn-secondary" target="_blank">
+                            <i class="fab fa-github"></i> Source Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Fabian Stettler. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
