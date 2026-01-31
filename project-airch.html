@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRCH - Roboterbasierte Objektplatzierung - Fabian Stettler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <nav class="back-nav">
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Projects
+            </a>
+        </div>
+    </nav>
+
+    <section class="project-detail">
+        <div class="container">
+            <h1 class="detail-title">AIRCH - Robot-based Object Placement with AprilTag Tracking</h1>
+            <p class="project-tech">Python • Computer Vision • Robotics • AprilTag • Kinematics (FK/IK) • Elephant Robotics</p>
+
+            <div class="detail-content">
+                <p class="lead-text">
+                    AIRCH is a robotics project demonstrating precise placement of a plastic ring onto a landing platform using Aruco markers (AprilTags). The system combines computer vision, forward and inverse kinematics, and real-time position control for autonomous pick-and-place operations.
+                </p>
+
+                <div class="project-links" style="margin-top: 20px; margin-bottom: 30px;">
+                    <a href="https://github.com/TobiFelder8/AIRCH" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-github"></i> View Full Source Code & Documentation
+                    </a>
+                </div>
+
+                <h2 class="section-title">Project Goal</h2>
+                <p>
+                    The main objective was to precisely place a plastic ring onto a landing platform. The challenge was to detect the target platform using Aruco markers (AprilTags) and control the robot arm to place the object accurately using real-time image processing, precise kinematics calculations, and robust control logic.
+                </p>
+
+                <h2 class="section-title">Demo Video</h2>
+                <p>
+                    Watch the robot in action performing precise ring placement on the target platform:
+                </p>
+                <div class="video-container">
+                    <video controls width="100%">
+                        <source src="images/AIRCH_video.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <p class="image-caption">AIRCH robot placing the plastic ring on the landing platform</p>
+                </div>
+
+                <div class="project-links" style="margin-top: 30px;">
+                    <a href="https://github.com/TobiFelder8/AIRCH" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-github"></i> Explore the Full Repository
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Fabian Stettler. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -54,22 +54,30 @@
                     <p class="image-caption">Sitting Functionality</p>
                 </div>
 
+                <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
                 <h2 class="section-title">System Architecture</h2>
                 <p>
                     The system is built on ROS2 (Robot Operating System 2) and consists of multiple interconnected nodes that work together to create a seamless human-robot interaction experience. All custom nodes run on a workstation and communicate with the Unitree Go1 robot over network topics. The robot provides three key topics: <code>/image</code> (camera feed), <code>/desired_pose</code> (for body positions), and <code>/cmd_vel</code> (for movement commands).
                 </p>
                 <div class="image-container">
-                    <img src="images/Docker Architecture Overview.845ae20e97d3137310d2.png" alt="ROS2 System Architecture">
-                    <p class="image-caption">Complete ROS2 Node Architecture - All custom nodes run on workstation hardware</p>
+                    <a href="images/Architektur.png" target="_blank" style="display: block;">
+                        <img src="images/Architektur.png" alt="ROS2 System Architecture" style="cursor: pointer;">
+                    </a>
+                    <p class="image-caption">Complete ROS2 Node Architecture - All custom nodes run on workstation hardware (click to enlarge)</p>
                 </div>
+
+                <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
 
                 <h2 class="section-title">State Machine Design</h2>
                 <p>
                     The sensor fusion node publishes four action commands: <strong>SIT</strong>, <strong>UP</strong>, <strong>FOLLOW</strong>, and <strong>STOP_FOLLOWING</strong>. The state machine processes these commands and updates its internal state, publishing the current state to <code>/state_machine_out</code>. The state machine implements strict transition rules to ensure system stability:
                 </p>
                 <div class="image-container">
-                    <img src="https://raw.githubusercontent.com/Luk-stud/HRI/main/polygon_nav/Documentation/state_machine.png" alt="State Machine Diagram" onerror="this.style.display='none'">
-                    <p class="image-caption">State Machine Transitions: IDLE → FOLLOW/SIT, FOLLOW → IDLE, SIT → IDLE</p>
+                    <a href="https://raw.githubusercontent.com/Luk-stud/HRI/main/polygon_nav/Documentation/state_machine.png" target="_blank" style="display: block;">
+                        <img src="https://raw.githubusercontent.com/Luk-stud/HRI/main/polygon_nav/Documentation/state_machine.png" alt="State Machine Diagram" onerror="this.style.display='none'" style="cursor: pointer;">
+                    </a>
+                    <p class="image-caption">State Machine Transitions: IDLE → FOLLOW/SIT, FOLLOW → IDLE, SIT → IDLE (click to enlarge)</p>
                 </div>
                 <ul class="feature-list">
                     <li><strong>IDLE:</strong> Default state. Robot performs subtle idle animations. Accepts FOLLOW (transitions to FOLLOW state) and SIT commands (transitions to SIT state).</li>
@@ -79,6 +87,8 @@
                 <p>
                     Invalid transitions (e.g., STOP_FOLLOWING while in SIT state) are rejected to prevent confusion from sensor noise. An internal flag prevents duplicate publications of the same state. This simple but robust design ensures that only valid state changes trigger actions, with all transitions normalized and validated before execution.
                 </p>
+
+                <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
 
                 <h2 class="section-title">ROS2 Nodes</h2>
                 

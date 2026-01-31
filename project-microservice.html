@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microservice Filialbestellsystem - Fabian Stettler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="project-nav">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i> Zurück zur Übersicht
+        </a>
+    </nav>
+
+    <div class="project-detail-container">
+        <header class="project-header">
+            <h1>Microservice Filialbestellsystem</h1>
+            <p class="project-meta">Herbstsemester 2024 | HSLU - Modul SWDA</p>
+        </header>
+
+        <section class="project-content">
+            <h2>Projektübersicht</h2>
+            <p>
+                Im Rahmen des Moduls Software Design and Architecture (SWDA) wurde ein verteiltes Filialbestellsystem entwickelt.
+                Es soll eine Bestellplattform für eine Filiale ermöglichen, wo Kunden Artikel bestellen können, die im Lager der Filiale vorhanden sind.
+                Das System basiert auf einer Microservice-Architektur und ermöglicht die vollständige Verwaltung von Kunden, 
+                Artikeln und Bestellungen in einem Filialkontext. Durch die Entkopplung der einzelnen Komponenten wird eine 
+                hohe Flexibilität, Skalierbarkeit und Wartbarkeit gewährleistet.
+            </p>
+
+
+            
+        </section>
+
+        <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
+        <section class="project-content">
+            <h2>Microservice-Architektur</h2>
+            <p>
+                Das System wurde bewusst als Microservice-Architektur konzipiert, um maximale Flexibilität und Unabhängigkeit 
+                der einzelnen Komponenten zu erreichen. Jeder Service ist für einen spezifischen Geschäftsbereich verantwortlich 
+                und kann unabhängig entwickelt, getestet und deployed werden.
+            </p>
+
+            <h3>Service-Übersicht</h3>
+            
+            <div class="service-grid">
+                <div class="service-card">
+                    <h4><i class="fas fa-shield-alt"></i> Auth Service</h4>
+                    <p>Authentifizierung und Autorisierung mit JWT-Tokens. Verwaltung von Benutzern und rollenbasiertem Zugriff. Passwort-Hashing mit Bcrypt.</p>
+                </div>
+
+                <div class="service-card">
+                    <h4><i class="fas fa-users"></i> Customer Service</h4>
+                    <p>Vollständige Verwaltung der Kundendaten. Integration mit Dunning Service zur Prüfung von Mahnungen.</p>
+                </div>
+
+                <div class="service-card">
+                    <h4><i class="fas fa-box"></i> Inventory Service</h4>
+                    <p>Lagerverwaltung mit Artikelstammdaten, Bestandsführung und Mindestmengen-Überwachung. Implementiert Locks und Transaktionen für Datenkonsistenz.</p>
+                </div>
+
+                <div class="service-card">
+                    <h4><i class="fas fa-shopping-cart"></i> Order Service</h4>
+                    <p>Bestellverwaltung mit komplexem State-Management. Koordination zwischen Customer-, Inventory- und Restock-Service.</p>
+                </div>
+
+                <div class="service-card">
+                    <h4><i class="fas fa-truck"></i> Restock Service</h4>
+                    <p>Automatische Nachbestellung beim Zentrallager. Verwaltung von Lieferterminen und Bestandsaktualisierung.</p>
+                </div>
+
+                <div class="service-card">
+                    <h4><i class="fas fa-file-alt"></i> Business Log Service</h4>
+                    <p>Zentrale Protokollierung aller Geschäftsvorgänge. Filterbare Abfrage von Logs nach verschiedenen Kriterien.</p>
+                </div>
+
+                <div class="service-card">
+                    <h4><i class="fas fa-exclamation-triangle"></i> Dunning Service</h4>
+                    <p>Verwaltung und Prüfung von Kundenmahnungen. Schnittstelle zur Integration mit externen Mahnungssystemen.</p>
+                </div>
+
+                <div class="service-card">
+                    <h4><i class="fas fa-network-wired"></i> API Gateway</h4>
+                    <p>Zentraler Einstiegspunkt für alle Client-Anfragen. REST-API mit Routing zu den entsprechenden Services über RabbitMQ.</p>
+                </div>
+            </div>
+        </section>
+            
+
+            <div class="project-image" style="margin: 2rem 0;">
+                <a href="images/Microservice_Architecture.png" target="_blank" style="cursor: pointer;">
+                    <img src="images/Microservice_Architecture.png" alt="Microservice Architektur Diagramm" style="width: 100%; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                </a>
+                <p style="text-align: center; color: #666; font-size: 0.9rem; margin-top: 0.5rem;">(Klicken zum Vergrößern)</p>
+            </div>
+        <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
+        <section class="project-content">
+            <h2>Technische Implementierung</h2>
+            
+            <h3>Technologie-Stack</h3>
+            <div style="background: #f8f9fa; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0;">
+                <ul style="margin: 0; padding-left: 1.5rem;">
+                    <li style="margin: 0.75rem 0;"><strong>Programmiersprache:</strong> Java 21</li>
+                    <li style="margin: 0.75rem 0;"><strong>Frameworks:</strong> Micronaut (Gateway), Hibernate (ORM)</li>
+                    <li style="margin: 0.75rem 0;"><strong>Message Broker:</strong> RabbitMQ für synchrone und asynchrone Kommunikation</li>
+                    <li style="margin: 0.75rem 0;"><strong>Datenbank:</strong> MySQL (jeder Service hat seine eigene Datenbankinstanz)</li>
+                    <li style="margin: 0.75rem 0;"><strong>Containerisierung:</strong> Docker, Docker Compose, Docker Swarm</li>
+                    <li style="margin: 0.75rem 0;"><strong>Testing:</strong> JUnit (Unit-Tests), Jest + Faker (System-Tests in TypeScript)</li>
+                    <li style="margin: 0.75rem 0;"><strong>API:</strong> REST-API über HTTP</li>
+                </ul>
+            </div>
+
+            <h3>Design Patterns</h3>
+            
+            <h4>Adapter/Strategy Pattern für Service-Kommunikation</h4>
+            <p>
+                Für die Kommunikation zwischen Services wurde ein Adapter Pattern implementiert. Jeder Service definiert 
+                Interfaces für die Kommunikation mit anderen Services. Diese können je nach Bedarf mit verschiedenen 
+                Implementierungen (RabbitMQ, Mock für Tests) verwendet werden.
+            </p>
+
+            <h4>Strategy Pattern für Datenbankzugriffe</h4>
+            <p>
+                Der Datenbankzugriff wurde abstrahiert durch DAO-Interfaces. Diese werden sowohl mit Hibernate 
+                als auch mit In-Memory-Implementierungen bereitgestellt, was das Testen ohne Datenbank ermöglicht.
+            </p>
+
+            <h3>Concurrency Control</h3>
+            <p>
+                Im Inventory Service wurde ein ausgefeiltes Concurrency-Management implementiert:
+            </p>
+            <ul>
+                <li><strong>ReentrantLocks:</strong> Schutz kritischer Codeabschnitte bei gleichzeitigen Zugriffen</li>                <li><strong>Thread-Safe DAOs:</strong> Lock- und Unlock-Mechanismen auf DAO-Ebene</li>
+            </ul>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
+        <section class="project-content">
+            <h2>Teststrategie</h2>
+            
+            <h3>Unit-Tests</h3>
+            <p>
+                Jeder Microservice verfügt über umfassende Unit-Tests, die in der CI/CD-Pipeline automatisch ausgeführt werden:
+            </p>
+            <ul>
+                <li>Mocking der RabbitMQ-Kommunikation für isolierte Service-Tests</li>
+                <li>In-Memory-Implementierung der DAOs für datenbankfreies Testing</li>
+                <li>Tests für kritische Geschäftslogik und Edge Cases</li>
+            </ul>
+
+            <h3>System-Tests</h3>
+            <p>
+                In einem separaten TypeScript-Projekt wurden End-to-End-Tests implementiert:
+            </p>
+            <ul>
+                <li>Vollständige Integration aller Services von Gateway bis Datenbank</li>
+                <li>Realistische Szenarien wie Kundenerfassung, Bestelldurchführung, Lagerverwaltung</li>
+                <li>TypeScript-Mapping der REST-API als Grundlage für zukünftige Web-Frontends</li>
+                <li>Jest als Test-Framework mit Faker für Testdaten-Generierung</li>
+            </ul>
+
+            <h3>Testing-Philosophie</h3>
+            <p>
+                Das Team entschied sich bewusst gegen manuelle Tests und setzte vollständig auf automatisierte Tests. 
+                Diese Strategie ermöglichte es, alle Anforderungen und Akzeptanzkriterien systematisch abzudecken und 
+                Regressionen frühzeitig zu erkennen.
+            </p>
+        </section>
+
+        <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
+        <h3>Projektteam</h3>
+            <p>
+                Das Projekt wurde von einem vierköpfigen Team entwickelt:
+            </p>
+            <ul>
+                <li>Michael Joss</li>
+                <li>Fabian Stettler</li>
+                <li>Tobias Felder</li>
+                <li>Robin Venetz</li>
+            </ul>
+
+        <div class="back-to-top">
+            <a href="index.html">← Zurück zur Übersicht</a>
+        </div>
+    </div>
+
+    <style>
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .service-card {
+            background: #f8f9fa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .service-card h4 {
+            color: #2c3e50;
+            margin: 0 0 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .service-card h4 i {
+            color: #3498db;
+            margin-right: 0.5rem;
+        }
+
+        .service-card p {
+            color: #555;
+            margin: 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #c7254e;
+        }
+    </style>
+</body>
+</html>

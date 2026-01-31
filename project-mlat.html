@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Aircraft Tracking Infrastructure via Multilateration - WIPRO Project">
+    <title>Aircraft Tracking via Multilateration - Fabian Stettler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="nav-link">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <section class="project-header">
+        <div class="container">
+            <h1>Aircraft Tracking Infrastructure via Multilateration</h1>
+            <p class="project-meta">WIPRO Project • 2024/2025 • Hochschule Luzern • Armasuisse</p>
+            <div class="project-tags">
+                <span class="tag">Raspberry Pi</span>
+                <span class="tag">RTL-SDR</span>
+                <span class="tag">Docker</span>
+                <span class="tag">Python</span>
+                <span class="tag">VPS</span>
+                <span class="tag">Multilateration</span>
+                <span class="tag">ADS-B</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Content -->
+    <section class="project-content">
+        <div class="container">
+            <div class="project-links" style="margin-bottom: 3rem;">
+                <a href="HSLU_I_WIPRO_HS25_Stettler_Arnet_Final.pdf" class="btn btn-primary" download>
+                    <i class="fas fa-file-pdf"></i> Download Full Documentation
+                </a>
+                <a href="https://github.com/fabian-stettler/mlat-server-wiedehopf-wipro" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-github"></i> Server Repository
+                </a>
+                <a href="https://github.com/fabian-stettler/mlat-client" class="btn btn-secondary" target="_blank">
+                    <i class="fab fa-github"></i> Client Repository
+                </a>
+            </div>
+            
+            <div class="content-section">
+                <h2>Overview</h2>
+                <p>
+                    This project describes the design, implementation, and evaluation of a multilateration (MLAT) infrastructure for aircraft localization across central Switzerland. The system enables position determination of aircraft based on received transponder signals, independent of GPS data. This is particularly relevant for military applications and research in the field of MLAT spoofing.
+                </p>
+                <p>
+                    Developed as a bachelor project (WIPRO) at Hochschule Luzern for the client Armasuisse (Swiss Federal Office for Defence Procurement), the system provides a functional foundation for further research in aviation safety and MLAT technology.
+                </p>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
+            <div class="content-section">
+                <h2>System Architecture</h2>
+                
+                
+                
+                <p>
+                    The implemented infrastructure consists of five geographically distributed receiver stations at the locations:
+                </p>
+                <ul>
+                    <li><strong>Rotkreuz</strong> - HSLU Campus rooftop installation</li>
+                    <li><strong>Zürich</strong> - ETH building with active antenna</li>
+                    <li><strong>Thun</strong> - Armasuisse Cyber-Defence Campus</li>
+                    <li><strong>Emmen</strong> - Homberg elevated position</li>
+                    <li><strong>Payerne</strong> - Airport facility with 5G connectivity</li>
+                </ul>
+                <p>
+                    Each receiver station is based on a Raspberry Pi 4 with RTL-SDR hardware and ADS-B antenna. A central server calculates aircraft positions through triangulation using Time Difference of Arrival (TDOA) measurements from multiple stations.
+                </p>
+            </div>
+            
+            <div class="project-image-inline">
+                    <a href="images/Netzwerkdiagramm_WIPRO_v2_1.png" target="_blank" style="display: block;">
+                        <img src="images/Netzwerkdiagramm_WIPRO_v2_1.png" alt="MLAT System Deployment Diagram" style="width: 100%; max-width: 900px; margin: 1.5rem auto; display: block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer;">
+                    </a>
+                    <p style="text-align: center; font-style: italic; color: #666; margin-top: 0.5rem;">System deployment architecture showing clients, server, and data flow (click to enlarge)</p>
+                </div>
+
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
+            <div class="content-section">
+                <h2>Technical Implementation</h2>
+                
+                <h3>Client Stations</h3>
+                <p>
+                    The software components (readsb, mlat-client, tar1090) were containerized with Docker, enabling efficient scaling and maintenance. Key features include:
+                </p>
+                <ul>
+                    <li><strong>Signal Reception:</strong> RTL-SDR dongles digitize electromagnetic transponder signals</li>
+                    <li><strong>Data Processing:</strong> readsb converts I/Q raw data into valid ADS-B messages</li>
+                    <li><strong>Real-time Visualization:</strong> tar1090 web interface displays tracked aircraft</li>
+                    <li><strong>Remote Access:</strong> Cloudflare tunnels provide secure remote administration via HTTPS</li>
+                    <li><strong>Weatherproofing:</strong> Stations deployed outdoors use protective enclosures</li>
+                </ul>
+
+                <h3>Server Component</h3>
+                <p>
+                    The MLAT server runs on a Hetzner VPS and was implemented based on the open-source repository by wiedehopf. A significant enhancement was the adaptation of the server component to multilateralize both uncooperative Mode-S signals and cooperative ADS-B signals. Key features:
+                </p>
+                <ul>
+                    <li><strong>Multi-client Support:</strong> Handles connections from multiple distributed receiver stations</li>
+                    <li><strong>Triangulation Engine:</strong> Calculates positions using TDOA from 4+ receivers</li>
+                    <li><strong>BEAST Format Output:</strong> Forwards multilaterated positions to OpenSky Network</li>
+                    <li><strong>Scalability:</strong> VPS resources can be adjusted based on load</li>
+                    <li><strong>Data Logging:</strong> Comprehensive logging for analysis and debugging</li>
+                </ul>
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
+            <div class="content-section">
+                <h2>Results & Evaluation</h2>
+                
+                <div class="project-image-inline">
+                    <img src="images/Multilaterierte_Positionen.png" alt="Scatterplot of Multilaterated Aircraft Positions" style="width: 100%; max-width: 900px; margin: 1.5rem auto; display: block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; font-style: italic; color: #666; margin-top: 0.5rem;">Scatterplot showing multilaterated positions - Red: ADS-B signals, Blue: Mode-S signals</p>
+                </div>
+                
+                <div class="project-image-inline">
+                    <img src="images/Heatmap_multilaterierte_Positionen.png" alt="MLAT Coverage Heatmap of Switzerland" style="width: 100%; max-width: 900px; margin: 1.5rem auto; display: block; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                    <p style="text-align: center; font-style: italic; color: #666; margin-top: 0.5rem;">Coverage heatmap showing multilaterated aircraft positions across Switzerland</p>
+                </div>
+                
+            </div>
+
+            <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
+
+            <div class="content-section">
+                <h2>Project Team</h2>
+                <p>
+                    <strong>Students:</strong> Dominik Arnet & Fabian Stettler<br>
+                    <strong>Client:</strong> Armasuisse W+T, Cyber-Defence Campus<br>
+                    <strong>Supervisor:</strong> Chris Ditze-Stephan<br>
+                    <strong>Institution:</strong> Hochschule Luzern, Department of Computer Science<br>
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Fabian Stettler. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
