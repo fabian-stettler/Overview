@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bachelorarbeit - Fabian Stettler</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .pdf-document {
+            margin-bottom: 20px;
+        }
+
+        .pdf-pages {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .pdf-page {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: #fff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .pdf-loading,
+        .pdf-error {
+            color: var(--text-light);
+            font-style: italic;
+        }
+
+        .pdf-error {
+            color: #b00020;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <nav class="back-nav">
+        <div class="container">
+            <a href="index.html" class="back-link">
+                <i class="fas fa-arrow-left"></i> Zurück zur Übersicht
+            </a>
+        </div>
+    </nav>
+
+    <section class="project-detail">
+        <div class="container">
+            <h1 class="detail-title">Bachelorarbeit</h1>
+            <p class="project-tech">Frühjahrssemester 2026 | HSLU – BSc Informatik</p>
+
+            <div class="detail-content">
+                <h2 class="section-title">Web Abstract</h2>
+
+                <div class="project-links" style="margin-bottom: 30px;">
+                    <a href="Stettler_Fabian_Web-Abstract_BAA_FS26_BSc%20Informatik.pdf" class="btn btn-primary" download>
+                        <i class="fas fa-file-pdf"></i> PDF herunterladen
+                    </a>
+                </div>
+
+                <div class="pdf-document">
+                    <div id="pdf-pages">
+                        <p class="pdf-loading">Dokument wird geladen…</p>
+                    </div>
+                </div>
+
+                <h2 class="section-title">Testdaten</h2>
+                <p>Dieses Video zeigt die Auswertung des Modells anhand der Testdaten.
+                    Links ist jeweils die Ground Truth Repräsentation der Person mit den Landmarks der Person.
+                    In der Mitte ist dann der Output des Modells (ohne Diffusion-Refiner) und ganz rechts der Output mit Diffusion-Refiner.
+                    Es wird jeweils pro Frame noch die der Fehler des Modells zur Ground Truth dargestellt (MPJPE bzw. Mean Per Joint Position Error über alle Landmarks)
+                </p>
+                <div class="video-container">
+                    <video controls width="100%">
+                        <source src="images/clip_1000_3000.mp4" type="video/mp4">
+                        Dein Browser unterstützt das Video-Tag nicht.
+                    </video>
+                    <p class="image-caption">Demonstration anhand der Testdaten</p>
+                </div>
+
+                <h2 class="section-title">Vollständige Arbeit</h2>
+                <p>
+                    Die vollständige Bachelorarbeit steht hier als PDF zum Download bereit.
+                </p>
+                <div class="project-links">
+                    <a href="Stettler_Fabian_Bericht%20ohne%20Signatur_BAA_FS26_BSc%20Informatik.pdf" class="btn btn-primary" download>
+                        <i class="fas fa-file-pdf"></i> Bachelorarbeit herunterladen
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Fabian Stettler. Alle Rechte vorbehalten.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+        const PDF_URL = 'Stettler_Fabian_Web-Abstract_BAA_FS26_BSc%20Informatik.pdf';
+        const container = document.getElementById('pdf-pages');
+
+        pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+        async function renderPdf() {
+            try {
+                const pdf = await pdfjsLib.getDocument(PDF_URL).promise;
+                container.innerHTML = '';
+
+                for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
+                    const page = await pdf.getPage(pageNum);
+                    const baseViewport = page.getViewport({ scale: 1 });
+                    const scale = container.clientWidth / baseViewport.width;
+                    const viewport = page.getViewport({ scale });
+
+                    const canvas = document.createElement('canvas');
+                    canvas.className = 'pdf-page';
+                    canvas.width = viewport.width;
+                    canvas.height = viewport.height;
+
+                    await page.render({
+                        canvasContext: canvas.getContext('2d'),
+                        viewport
+                    }).promise;
+
+                    container.appendChild(canvas);
+                }
+            } catch (error) {
+                container.innerHTML =
+                    '<p class="pdf-error">Dokument konnte nicht geladen werden. Bitte lokalen Webserver verwenden oder PDF herunterladen.</p>';
+            }
+        }
+
+        renderPdf();
+        window.addEventListener('resize', () => {
+            clearTimeout(window.pdfResizeTimer);
+            window.pdfResizeTimer = setTimeout(renderPdf, 200);
+        });
+    </script>
+</body>
+</html>

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Fabian Stettler - Portfolio showcasing data mining, database systems, and distributed systems projects">
-    <meta property="og:title" content="Fabian Stettler - Software Engineer Portfolio">
-    <meta property="og:description" content="Portfolio showcasing data mining, database systems, and distributed systems projects">
-    <title>Fabian Stettler - Portfolio</title>
+    <meta name="description" content="Fabian Stettler – Portfolio mit Projekten aus Data Mining, Datenbanksystemen und verteilten Systemen">
+    <meta property="og:title" content="Fabian Stettler – Software Engineer Portfolio">
+    <meta property="og:description" content="Portfolio mit Projekten aus Data Mining, Datenbanksystemen und verteilten Systemen">
+    <title>Fabian Stettler – Portfolio</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,8 +17,8 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
-            <h1 class="hero-title">Hey! My name is Fabian Stettler.</h1>
-            <p class="hero-subtitle">I'm a Computer Scientist student at HSLU (Hochschule Luzern). This site is a visual collection of some of my projects. Welcome!</p>
+            <h1 class="hero-title">Hallo! Ich bin Fabian Stettler.</h1>
+            <p class="hero-subtitle">Ich studiere Informatik an der HSLU (Hochschule Luzern). Diese Seite ist eine visuelle Sammlung einiger meiner Projekte. Willkommen!</p>
             
             <div class="social-links">
                 <a href="https://github.com/fabian-stettler" aria-label="GitHub" target="_blank">
@@ -34,60 +34,79 @@
     <!-- Projects Section -->
     <section class="projects">
         <div class="container">
-            <!-- Project 1: Human-Robot Interaction with Unitree Go1 -->
+            <!-- Project: Bachelor Thesis -->
             <div class="project-card">
                 <div class="project-image">
-                    <img src="images/blackunitreego1quadruped3dsmodel001.jpg" alt="Unitree Go1 Quadruped Robot">
+                    <img src="images/MotivationsBildCSI.png" alt="WiFi CSI People Detection – Konzeptillustration">
                 </div>
                 <div class="project-content">
-                    <h2 class="project-title"><a href="project-hri.html" class="title-link">Human-Robot Interaction with Unitree Go1</a></h2>
+                    <h2 class="project-title"><a href="project-Bachelor-Thesis.html" class="title-link">Bachelorarbeit: WiFi CSI People Detection</a></h2>
+                    <p class="project-tech">WiFi CSI • Machine Learning • 3D-Pose-Schätzung • Python • PyTorch • OpenWrt</p>
+                    <p class="project-description">
+                        Bachelorarbeit am HSLU AI Robotics Research Lab: Erkennung und 3D-Lokalisierung von Personen allein aus WiFi-Channel-State-Information (CSI). Vier TP-Link-Router erfassen CSI-Signale, eine Intel RealSense-Kamera liefert synchronisierte Ground-Truth-Posen. Zwei Modelle (Yan-Referenzmodell und eigenes CTD-Modell mit Diffusions-Refiner) wurden auf 94'703 Samples trainiert und evaluiert — das CTD-Modell erreichte einen mittleren MPJPE von 111,87 mm.
+                    </p>
+                    <div class="project-links">
+                        <a href="project-Bachelor-Thesis.html" class="btn btn-primary">
+                            <i class="fas fa-info-circle"></i> Details
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project: Human-Robot Interaction -->
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="images/blackunitreego1quadruped3dsmodel001.jpg" alt="Unitree Go1 Vierbeiner-Roboter">
+                </div>
+                <div class="project-content">
+                    <h2 class="project-title"><a href="project-hri.html" class="title-link">Mensch-Roboter-Interaktion mit Unitree Go1</a></h2>
                     <p class="project-tech">ROS2 • Python • YOLOv8 • MediaPipe • Vosk • Docker</p>
                     <p class="project-description">
-                        A comprehensive Human-Robot Interaction system for the Unitree Go1 quadruped robot developed in the HRI module at HSLU. The system enables natural multimodal interaction through hand gestures, voice commands, and visual person tracking. The robot can follow a designated person, respond to voice commands, and perform various poses using an advanced ROS2 node architecture with sensor fusion.
+                        Ein umfassendes Mensch-Roboter-Interaktionssystem für den Vierbeiner-Roboter Unitree Go1, entwickelt im HRI-Modul an der HSLU. Das System ermöglicht natürliche multimodale Interaktion durch Handgesten, Sprachbefehle und visuelle Personenverfolgung. Der Roboter kann einer ausgewählten Person folgen, auf Sprachbefehle reagieren und verschiedene Posen ausführen — auf Basis einer ROS2-Node-Architektur mit Sensorfusion.
                     </p>
                     <div class="project-links">
                         <a href="https://github.com/Luk-stud/HRI" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i> Source Code
+                            <i class="fab fa-github"></i> Quellcode
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2: Aircraft Tracking via Multilateration -->
+            <!-- Project: MLAT -->
             <div class="project-card">
                 <div class="project-image">
-                    <img src="images/Titelbild_Detaillseite_WIPRO_project.png" alt="MLAT Antenna Installation" style="object-fit: cover; height: 400px;">
+                    <img src="images/Titelbild_Detaillseite_WIPRO_project.png" alt="MLAT-Antenneninstallation" style="object-fit: cover; height: 400px;">
                 </div>
                 <div class="project-content">
-                    <h2 class="project-title"><a href="project-mlat.html" class="title-link">Aircraft Tracking Infrastructure via Multilateration</a></h2>
+                    <h2 class="project-title"><a href="project-mlat.html" class="title-link">Flugzeugortung per Multilateration</a></h2>
                     <p class="project-tech">Raspberry Pi • RTL-SDR • Docker • Python • VPS • Multilateration</p>
                     <p class="project-description">
-                        A distributed multilateration (MLAT) infrastructure for aircraft localization across central Switzerland, developed for Armasuisse. The system tracks aircraft based on transponder signals independent of GPS data, using five geographically distributed receiver stations at Rotkreuz, Zürich, Thun, Emmen, and Payerne. Each station uses a Raspberry Pi 4 with RTL-SDR hardware and ADS-B antenna. Software components (readsb, mlat-client, tar1090) are containerized with Docker for scalable deployment. The MLAT server, running on a VPS, triangulates aircraft positions with a median accuracy of ~2km compared to GPS reference data. The system supports both cooperative ADS-B and uncooperative Mode-S signals, forwarding multilaterated positions to the OpenSky Network for visualization.
+                        Eine verteilte Multilaterations-Infrastruktur (MLAT) zur Flugzeugortung in der Zentralschweiz, entwickelt für Armasuisse. Das System ortet Flugzeuge anhand von Transpondersignalen unabhängig von GPS-Daten — mit fünf geografisch verteilten Empfangsstationen in Rotkreuz, Zürich, Thun, Emmen und Payerne. Jede Station nutzt einen Raspberry Pi 4 mit RTL-SDR-Hardware und ADS-B-Antenne. Die Softwarekomponenten (readsb, mlat-client, tar1090) sind mit Docker containerisiert. Der MLAT-Server auf einem VPS trianguliert Flugzeugpositionen mit einer medianen Genauigkeit von ca. 2 km gegenüber GPS-Referenzdaten.
                     </p>
                     <div class="project-links">
                         <a href="HSLU_I_WIPRO_HS25_Stettler_Arnet_Final.pdf" class="btn btn-primary" download>
-                            <i class="fas fa-file-pdf"></i> Download PDF
+                            <i class="fas fa-file-pdf"></i> PDF herunterladen
                         </a>
                         <a href="https://github.com/fabian-stettler/mlat-server-wiedehopf-wipro" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i> Server Code
+                            <i class="fab fa-github"></i> Server-Code
                         </a>
                         <a href="https://github.com/fabian-stettler/mlat-client" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i> Client Code
+                            <i class="fab fa-github"></i> Client-Code
                         </a>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 3: Microservice Filialbestellsystem -->
+            <!-- Project: Microservice -->
             <div class="project-card">
                 <div class="project-image">
-                    <img src="images/FBS.png" alt="Microservice Branch Ordering System">
+                    <img src="images/FBS.png" alt="Microservice Filialbestellsystem">
                 </div>
                 <div class="project-content">
                     <h2 class="project-title"><a href="project-microservice.html" class="title-link">Microservice Filialbestellsystem</a></h2>
                     <p class="project-tech">Java 21 • Microservices • RabbitMQ • Docker • MySQL • Hibernate</p>
                     <p class="project-description">
-                        A distributed branch ordering system built with microservice architecture. The system manages customers, inventory, and orders through seven independent services communicating via RabbitMQ. Features include automated restocking, dunning checks, business logging, and JWT-based authentication. Each service has its own database ensuring high autonomy and scalability. Developed as part of the Software Design and Architecture (SWDA) module.
+                        Ein verteiltes Filialbestellsystem auf Basis einer Microservice-Architektur. Das System verwaltet Kunden, Lagerbestände und Bestellungen über sieben unabhängige Services, die via RabbitMQ kommunizieren. Funktionen umfassen automatische Nachbestellung, Mahnungsprüfung, Business Logging und JWT-basierte Authentifizierung. Jeder Service hat eine eigene Datenbank — für hohe Autonomie und Skalierbarkeit. Entwickelt im Modul Software Design and Architecture (SWDA).
                     </p>
                     <div class="project-links">
                         <a href="project-microservice.html" class="btn btn-primary">
@@ -97,51 +116,31 @@
                 </div>
             </div>
 
-            <!-- Project 4: Robot-based Object Placement -->
+            <!-- Project: AIRCH -->
             <div class="project-card">
                 <div class="project-image">
                     <img src="images/AIRCH.png" alt="Elephant Robotics MyPalletizer" onerror="this.src='images/blackunitreego1quadruped3dsmodel001.jpg'" style="object-fit: cover; height: 400px;">
                 </div>
                 <div class="project-content">
-                    <h2 class="project-title"><a href="project-airch.html" class="title-link">Robot-based Object Placement</a></h2>
+                    <h2 class="project-title"><a href="project-airch.html" class="title-link">Roboterbasierte Objektplatzierung</a></h2>
                     <p class="project-tech">Python • Computer Vision • AprilTag • Kinematics (FK/IK) • Elephant Robotics</p>
                     <p class="project-description">
-                        A robotics project demonstrating precise placement of a plastic ring onto a landing platform using AprilTag markers. The system uses an Elephant Robotics MyPalletizer 260 arm and combines computer vision, forward/inverse kinematics, and closed-loop control. Control operates via a coordinate system with origin at the robot base, using real-time camera positioning for mm-accurate object placement.
+                        Ein Robotikprojekt zur präzisen Platzierung eines Kunststoffrings auf eine Landeplattform mithilfe von AprilTag-Markern. Das System nutzt einen Elephant Robotics MyPalletizer 260 und kombiniert Computer Vision, Vorwärts-/Rückwärtskinematik (FK/IK) und Closed-Loop-Control. Die Steuerung erfolgt über ein Koordinatensystem mit Ursprung an der Roboterbasis — für mm-genaue Objektplatzierung in Echtzeit.
                     </p>
                     <div class="project-links">
                         <a href="https://github.com/TobiFelder8/AIRCH" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i> Source Code
+                            <i class="fab fa-github"></i> Quellcode
                         </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Project 5: Data Mining SRF -->
-            <div class="project-card">
-                <div class="project-image">
-                    <img src="images/KeywordNetwork.dc329a85077ab214bb54.png" alt="Data Mining SRF Network Graph">
-                </div>
-                <div class="project-content">
-                    <h2 class="project-title"><a href="project-datamining.html" class="title-link">Data Mining SRF</a></h2>
-                    <p class="project-tech">Python • Data Analysis • Web Scraping • Docker</p>
-                    <p class="project-description">
-                        This is my first data mining project where I extracted data from www.srf.ch, a Swiss news site, and then systematically analyzed the data. I was interested in publication time of articles, attention on certain subjects over time, releasing frequency and release timing of certain authors. Also I was interested in possible biases of the publisher concerning specific subjects. I gathered the relevant HTML files with a script on my Raspberry Pi which reached out once per day. This was inspired by David Kriesel's "Reversing Spiegel-Online".
-                    </p>
-                    <div class="project-links">
-                        <a href="https://github.com/fabian-stettler/DataMining" class="btn btn-secondary" target="_blank">
-                            <i class="fab fa-github"></i> Source Code
-                        </a>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Fabian Stettler. All rights reserved.</p>
+            <p>&copy; 2026 Fabian Stettler. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
 </body>

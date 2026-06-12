@@ -5,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Database Decision Support System - Fabian Stettler</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="md-project.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 <body>
     <nav class="back-nav">
         <div class="container">
             <a href="index.html" class="back-link">
-                <i class="fas fa-arrow-left"></i> Back to Projects
+                <i class="fas fa-arrow-left"></i> Zurück zur Übersicht
             </a>
         </div>
     </nav>
@@ -24,56 +26,20 @@
             <h1 class="detail-title">Database Decision Support System</h1>
             <p class="project-tech">MongoDB • SQL • Python • Data Analysis</p>
 
-            <div class="detail-content">
-                <p class="lead-text">
-                    This is a project which provides decision support on the basis of data. The user is supported in their decision-making process with underlying MongoDB and SQL databases. This project was aimed at helping football clubs find optimal new signings, game analysis of opponents and tactics.
-                </p>
-
-                <div class="project-links" style="margin-top: 20px; margin-bottom: 30px;">
-                    <a href="Datamining_Arbeit.pdf" class="btn btn-primary" download>
-                        <i class="fas fa-file-pdf"></i> Download Full Documentation
-                    </a>
-                </div>
-
-                <h2 class="section-title">Project Overview</h2>
-                <p>
-                    The system demonstrates the power of combining different database technologies for complex analytical queries. By leveraging both MongoDB's flexible document structure and SQL's relational capabilities, the system can efficiently process and analyze large datasets to provide actionable insights.
-                </p>
-
-                <h2 class="section-title">MongoDB Schema</h2>
-                <p>
-                    The MongoDB database schema is designed to handle complex, nested player and team statistics efficiently. The document-based structure allows for flexible querying and aggregation of performance metrics.
-                </p>
-                <div class="image-container">
-                    <img src="images/MongoDBSchema.d33d603ae2da889f2d78.png" alt="MongoDB Schema Diagram">
-                    <p class="image-caption">MongoDB Database Schema</p>
-                </div>
-
-                <h2 class="section-title">System Architecture</h2>
-                <p>
-                    The system architecture integrates multiple data sources and provides a comprehensive interface for analyzing player performance, team statistics, and match outcomes. It supports various types of queries including player comparisons, tactical analysis, and transfer market evaluations.
-                </p>
-                <div class="image-container">
-                    <img src="images/VisualisierungBenutzterSysteme.341f73c5ea3e78c7b4d7.png" alt="System Architecture">
-                    <p class="image-caption">Visualization of System Architecture</p>
-                </div>
-
-                <h2 class="section-title">Key Features</h2>
-                <ul class="feature-list">
-                    <li><strong>Player Performance Analysis:</strong> Comprehensive metrics and statistics for individual players</li>
-                    <li><strong>Team Comparison:</strong> Advanced analytics for comparing team performances</li>
-                    <li><strong>Transfer Market Insights:</strong> Data-driven recommendations for player acquisitions</li>
-                    <li><strong>Tactical Analysis:</strong> Opponent analysis and strategic recommendations</li>
-                    <li><strong>Historical Data Tracking:</strong> Long-term performance trends and patterns</li>
-                </ul>
+            <div class="detail-content" id="md-content" data-md="content/project-database.md">
+                <p class="md-loading">Inhalt wird geladen…</p>
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Fabian Stettler. All rights reserved.</p>
+            <p>&copy; 2026 Fabian Stettler. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="md-project.js"></script>
 </body>
 </html>

@@ -3,72 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Distributed Logging System - Fabian Stettler</title>
+    <title>Verteiltes Logging-System - Fabian Stettler</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="md-project.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 <body>
     <nav class="back-nav">
         <div class="container">
             <a href="index.html" class="back-link">
-                <i class="fas fa-arrow-left"></i> Back to Projects
+                <i class="fas fa-arrow-left"></i> Zurück zur Übersicht
             </a>
         </div>
     </nav>
 
     <section class="project-detail">
         <div class="container">
-            <h1 class="detail-title">Distributed Logging System</h1>
+            <h1 class="detail-title">Verteiltes Logging-System</h1>
             <p class="project-tech">Java • TCP/IP • Distributed Systems • Docker</p>
 
-            <div class="detail-content">
-                <p class="lead-text">
-                    This project was done in the context of the module VSK (distributed systems) at HSLU. The project is a distributed logging system which enables logging via TCP from multiple clients to a central server. It also includes a logger viewer which allows for a visual representation of the logged data at the server.
-                </p>
-
-                <div class="project-links" style="margin-top: 20px; margin-bottom: 30px;">
-                    <a href="Dokumentation_VSK.pdf" class="btn btn-primary" download>
-                        <i class="fas fa-file-pdf"></i> Download Documentation
-                    </a>
-                    <a href="https://github.com/fabian-stettler/distributed-logging-system-vsk" class="btn btn-secondary" target="_blank">
-                        <i class="fab fa-github"></i> Source Code
-                    </a>
-                </div>
-
-                <h2 class="section-title">Component Diagram</h2>
-                <p>
-                    The system consists of several key components that work together to provide reliable distributed logging capabilities. Each component is designed to be independently deployable and scalable.
-                </p>
-                <div class="image-container">
-                    <img src="images/Komponentendiagramm.92dd6de87ecc4a84c545.jpg" alt="Component Diagram">
-                    <p class="image-caption">System Component Diagram</p>
-                </div>
-
-                <h2 class="section-title">Key Features</h2>
-                <ul class="feature-list">
-                    <li><strong>TCP/IP Communication:</strong> Reliable network protocol for client-server communication</li>
-                    <li><strong>Concurrent Processing:</strong> Handles multiple client connections simultaneously</li>
-                    <li><strong>Centralized Logging:</strong> Single point for log aggregation and storage</li>
-                    <li><strong>Visual Log Viewer:</strong> Real-time visualization of logged data</li>
-                    <li><strong>Docker Deployment:</strong> Containerized architecture for easy deployment</li>
-                    <li><strong>Scalable Design:</strong> Architecture supports horizontal scaling</li>
-                </ul>
-
-                <h2 class="section-title">Technologies Used</h2>
-                <p>
-                    The project utilizes modern Java technologies and follows distributed systems best practices. Docker containers ensure consistent deployment across different environments, while TCP/IP provides reliable network communication.
-                </p>
+            <div class="detail-content" id="md-content" data-md="content/project-logging.md">
+                <p class="md-loading">Inhalt wird geladen…</p>
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Fabian Stettler. All rights reserved.</p>
+            <p>&copy; 2026 Fabian Stettler. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="md-project.js"></script>
 </body>
 </html>

@@ -3,156 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Human-Robot Interaction with Unitree Go1 - Fabian Stettler</title>
+    <title>Mensch-Roboter-Interaktion mit Unitree Go1 - Fabian Stettler</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="md-project.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
 </head>
 <body>
     <nav class="back-nav">
         <div class="container">
             <a href="index.html" class="back-link">
-                <i class="fas fa-arrow-left"></i> Back to Projects
+                <i class="fas fa-arrow-left"></i> Zurück zur Übersicht
             </a>
         </div>
     </nav>
 
     <section class="project-detail">
         <div class="container">
-            <h1 class="detail-title">Human-Robot Interaction with Unitree Go1</h1>
+            <h1 class="detail-title">Mensch-Roboter-Interaktion mit Unitree Go1</h1>
             <p class="project-tech">ROS2 • Python • YOLOv8 • MediaPipe • Vosk • Docker</p>
 
-            <div class="detail-content">
-                <p class="lead-text">
-                    A comprehensive Human-Robot Interaction system for the Unitree Go1 quadruped robot developed in the HRI (Human-Robot Interaction) module at HSLU. The system enables natural multimodal interaction through hand gestures, voice commands, and visual person tracking. The robot can follow a designated person, respond to German voice commands ("Sitz", "Auf", "Bei Fuß"), and perform various poses using an advanced ROS2 node architecture with sensor fusion.
-                </p>
-
-                <div class="project-links" style="margin-top: 20px; margin-bottom: 30px;">
-                    <a href="https://github.com/Luk-stud/HRI" class="btn btn-primary" target="_blank">
-                        <i class="fab fa-github"></i> View Full Source Code & Documentation
-                    </a>
-                </div>
-
-                <h2 class="section-title">Demo Videos</h2>
-                <p>
-                    Watch the Unitree Go1 in action demonstrating person following and sitting functionality:
-                </p>
-                <div class="video-container">
-                    <video controls width="100%">
-                        <source src="images/video_unitree_follow2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="image-caption">Person Following Demonstration</p>
-                </div>
-                <div class="video-container">
-                    <video controls width="100%">
-                        <source src="images/Sitzfunktionalität.MOV" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <p class="image-caption">Sitting Functionality</p>
-                </div>
-
-                <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
-
-                <h2 class="section-title">System Architecture</h2>
-                <p>
-                    The system is built on ROS2 (Robot Operating System 2) and consists of multiple interconnected nodes that work together to create a seamless human-robot interaction experience. All custom nodes run on a workstation and communicate with the Unitree Go1 robot over network topics. The robot provides three key topics: <code>/image</code> (camera feed), <code>/desired_pose</code> (for body positions), and <code>/cmd_vel</code> (for movement commands).
-                </p>
-                <div class="image-container">
-                    <a href="images/Architektur.png" target="_blank" style="display: block;">
-                        <img src="images/Architektur.png" alt="ROS2 System Architecture" style="cursor: pointer;">
-                    </a>
-                    <p class="image-caption">Complete ROS2 Node Architecture - All custom nodes run on workstation hardware (click to enlarge)</p>
-                </div>
-
-                <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
-
-                <h2 class="section-title">State Machine Design</h2>
-                <p>
-                    The sensor fusion node publishes four action commands: <strong>SIT</strong>, <strong>UP</strong>, <strong>FOLLOW</strong>, and <strong>STOP_FOLLOWING</strong>. The state machine processes these commands and updates its internal state, publishing the current state to <code>/state_machine_out</code>. The state machine implements strict transition rules to ensure system stability:
-                </p>
-                <div class="image-container">
-                    <a href="https://raw.githubusercontent.com/Luk-stud/HRI/main/polygon_nav/Documentation/state_machine.png" target="_blank" style="display: block;">
-                        <img src="https://raw.githubusercontent.com/Luk-stud/HRI/main/polygon_nav/Documentation/state_machine.png" alt="State Machine Diagram" onerror="this.style.display='none'" style="cursor: pointer;">
-                    </a>
-                    <p class="image-caption">State Machine Transitions: IDLE → FOLLOW/SIT, FOLLOW → IDLE, SIT → IDLE (click to enlarge)</p>
-                </div>
-                <ul class="feature-list">
-                    <li><strong>IDLE:</strong> Default state. Robot performs subtle idle animations. Accepts FOLLOW (transitions to FOLLOW state) and SIT commands (transitions to SIT state).</li>
-                    <li><strong>FOLLOW:</strong> Robot actively tracks and follows the designated person. Only accepts STOP_FOLLOWING command to return to IDLE.</li>
-                    <li><strong>SIT:</strong> Robot assumes sitting position with interpolated joint movements. Only accepts UP command to return to IDLE.</li>
-                </ul>
-                <p>
-                    Invalid transitions (e.g., STOP_FOLLOWING while in SIT state) are rejected to prevent confusion from sensor noise. An internal flag prevents duplicate publications of the same state. This simple but robust design ensures that only valid state changes trigger actions, with all transitions normalized and validated before execution.
-                </p>
-
-                <hr style="border: none; border-top: 1px solid #e0e0e0; margin: 3rem 0;">
-
-                <h2 class="section-title">ROS2 Nodes</h2>
-                
-                <p>
-                    The system consists of seven specialized ROS2 nodes that handle perception, decision-making, and control. Below follows a short description of each node:
-                </p>
-
-                <h3 class="subsection-title">1. YOLO Processor (yolo_processor.py)</h3>
-                <p>
-                    Receives the camera feed and performs YOLOv8 inference with BYTETrack tracking. Each detected person receives a stable tracking ID that persists even during brief occlusions. The node publishes bounding box coordinates and confidence scores as <code>vision_msgs/Detection2DArray</code> on <code>/yolo/detections</code>. An annotated image with boxes and IDs is published to <code>/yolo/processed_image</code> for debugging. Configurable confidence thresholds allow tuning between precision and recall. BYTETrack ensures ID stability, making the follow behavior smooth and preventing tracking jumps.
-                </p>
-
-                <h3 class="subsection-title">2. Hand Gesture Detector (hand_gesture_detector.py)</h3>
-                <p>
-                    Processes the camera stream using MediaPipe Hands to extract landmarks from both hands. The node detects pointing gestures (index finger raised) and thumbs-up signals, publishing their pixel coordinates as <code>geometry_msgs/PointStamped</code> to <code>/hand/pointer_finger</code> and <code>/hand/thumbs_up</code>. An annotated image with skeleton lines, markers, and debug colors is published to <code>/hand/annotated_image</code>. Extensive logging provides insight into detected gestures and coordinates. GPU-accelerated MediaPipe keeps latency low even when tracking multiple hands simultaneously.
-                </p>
-
-                <h3 class="subsection-title">3. Voice Recognition (vosk_mic_listener)</h3>
-                <p>
-                    Forms the audio front-end of the system. At startup, it searches all available microphones and prefers the Samson Q2U USB microphone specified in <code>config.py</code>. A local Vosk speech model is loaded with configurable grammar, sample rate, and model path via ROS parameters. Audio samples are captured with PyAudio, processed through KaldiRecognizer, and published as final transcripts and partial strings to <code>/voice_commands_log</code> for debugging.
-                </p>
-                <p>
-                    The node recognizes multiple wake words (e.g., "Snoopy", "Thomas"). Upon wake word detection, a 10-second command window (<code>awaiting_command</code>) is activated. Within this window, the system searches for phrases defined in <code>COMMANDS_AFTER_WAKE</code> and publishes the corresponding normalized token (e.g., <code>dog_up</code>, <code>dog_sit</code>) as <code>std_msgs/String</code> to <code>/voice_commands</code>. This architecture ensures voice commands arrive deterministically and with priority at the sensor fusion node.
-                </p>
-
-                <h3 class="subsection-title">4. Sensor Fusion (sensor_fusion.py)</h3>
-                <p>
-                    The brain of the system that combines hand gestures, voice commands, and person detections into unified action recommendations. It subscribes to <code>/yolo/detections</code>, <code>/hand/pointer_finger</code>, <code>/hand/thumbs_up</code>, <code>/voice_commands</code>, and YOLO image output to link geometric and semantic information.
-                </p>
-                <p>
-                    <strong>Gesture Duration Filtering:</strong> When a person points at a detected person for more than 3 seconds, the corresponding bounding box ID is saved as the tracked target. Target coordinates are published to <code>/human_tracker/target_person</code>. Similarly, a sustained thumbs-up (3+ seconds) triggers STOP_FOLLOWING. Voice commands like "Sitz" or "Auf" are processed with highest priority, overriding gestures.
-                </p>
-                <p>
-                    All determined actions (FOLLOW, STOP_FOLLOWING, SIT, UP) are published as <code>std_msgs/String</code> to <code>/fusion_out</code>, providing the state machine with simple control signals. Timestamps, timeouts, and buffers prevent brief gesture flicker from causing false decisions. A tracking ID system ensures only the selected person triggers commands.
-                </p>
-
-                <h3 class="subsection-title">5. Follower Control (follower_control.py)</h3>
-                <p>
-                    Converts the target person stream from sensor fusion into concrete movement commands. The node subscribes to <code>/state_machine_out</code> and only activates in FOLLOW state. Via <code>/human_tracker/target_person</code>, it receives the target's pixel position and box height as a distance proxy. Horizontal deviation from image center determines desired angular velocity, while box height regulates distance. A <code>geometry_msgs/Twist</code> message is published to <code>/cmd_vel</code> for the Unitree motion stack; when FOLLOW is inactive, zero velocity is immediately sent.
-                </p>
-                <p>
-                    <strong>PID Controllers:</strong> Two PID controllers handle linear and angular channels. Gains (<code>kp_*</code>, <code>ki_*</code>, <code>kd_*</code>) and limits like <code>max_linear_speed</code> are ROS parameters for field adjustment. The linear controller is limited to forward motion (0 to max), preventing backward movement. The angular controller has symmetric limits (±max_angular_speed). Both implement anti-windup through integral saturation and reset on state changes via <code>reset_controllers()</code>.
-                </p>
-                <p>
-                    <strong>Watchdog Timer:</strong> A <code>target_timeout</code> monitors whether sensor fusion continues providing target updates. If updates cease for longer than configured, the robot stops, controllers reset, and the system waits for a new bounding box ID from sensor fusion.
-                </p>
-
-                <h3 class="subsection-title">6. Pose Control (pose_control.py)</h3>
-                <p>
-                    Translates abstract state machine states into concrete body poses for the Go1. When a new state is published to <code>/state_machine_out</code>, pose_control executes the corresponding pose or animation. In IDLE state, a subtle idle loop runs to prevent the robot from appearing rigid. Transitioning to SIT triggers an interpolation sequence that smoothly moves joints into sitting position. For FOLLOW state, the robot transitions back to neutral stance, providing a stable base for the motion controller. All pose commands are published as <code>go1_legged_msgs/DesiredPose</code> to <code>/desired_pose</code>. A small animation engine with timer handles looping and sequence completion.
-                </p>
-
-                <h3 class="subsection-title">7. State Machine (state_machine.py)</h3>
-                <p>
-                    Manages the robot's behavioral states by processing fusion output and enforcing valid transitions. The state machine accepts only four normalized action strings (FOLLOW, STOP_FOLLOWING, SIT, UP) and checks them against a strict transition table. Invalid combinations are rejected to prevent noise from causing side effects. An internal flag prevents duplicate publications—only actual state changes are published to <code>/state_machine_out</code>.
-                </p>
+            <div class="detail-content" id="md-content" data-md="content/project-hri.md">
+                <p class="md-loading">Inhalt wird geladen…</p>
             </div>
         </div>
     </section>
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Fabian Stettler. All rights reserved.</p>
+            <p>&copy; 2026 Fabian Stettler. Alle Rechte vorbehalten.</p>
         </div>
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="md-project.js"></script>
 </body>
 </html>
